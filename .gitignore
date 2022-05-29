@@ -1,0 +1,12 @@
+/node_modules
+.next
+dist
+
+.firebase
+firebase-debug.log
+
+yarn-error.log
+
+.env
+.runtimeconfig.json
+.env.yaml
