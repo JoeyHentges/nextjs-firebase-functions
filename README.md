@@ -4,6 +4,14 @@ This is a serverless [Next.js](https://nextjs.org/) project built to run on [Fir
 
 Install the dependencies, and update your environment variables in `src/client/.env`.
 
+Initialize `Firebase` project and select Hosting only:
+
+```bash
+firebase init
+...
+(*) Hosting: Set up GitHub Action deploys.
+```
+
 Run the `Nextjs` development server and open [http://localhost:3000](http://localhost:3000):
 
 ```bash
@@ -18,14 +26,6 @@ Run the `Firebase functions / hosting` local server and open [http://localhost:5
 npm run serve
 # or
 yarn serve
-```
-
-Initialize `Firebase` project and select Hosting only:
-
-```bash
-firebase init
-...
-(*) Hosting: Set up GitHub Action deploys.
 ```
 
 Deploy to `Firebase functions / hosting`:
