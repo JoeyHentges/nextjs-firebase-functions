@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import { useIdleTimer } from 'react-idle-timer';
 import styled from 'styled-components';
-import { Modal, Box, Button, Paper, Typography } from '@mui/material';
+import { Modal, Button, Paper, Typography } from '@mui/material';
 
 import * as VARIABLES from '../constants/variables';
 import { RootReducer, signOut, updateSession } from '../redux';
