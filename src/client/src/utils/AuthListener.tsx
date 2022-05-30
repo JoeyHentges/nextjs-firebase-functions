@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLoaded } from 'react-redux-firebase';
 import Cookies from 'universal-cookie';
 import { useIdleTimer } from 'react-idle-timer';
 import styled from 'styled-components';
@@ -39,11 +38,13 @@ const AuthListener = (props) => {
   const cookies = new Cookies();
   const authSessionCookie = cookies.get('auth/session');
 
+  const user = useSelector((state: RootReducer) => state.user.user);
+
   const handleOnAction = () => {
     if (!showTimeoutModal) {
       setShowTimeoutModal(false);
       allowScroll();
-      if (authSessionCookie) dispatch(updateSession());
+      if (authSessionCookie && user) dispatch(updateSession());
     }
   };
 
@@ -87,21 +88,15 @@ const AuthListener = (props) => {
     }
   }, [sessionCountdownTimer, showTimeoutModal]);
 
-  // handle page loading - load only if auth and profile have successfully loaded fully
-  const auth = useSelector((state: RootReducer) => state.firebase.auth);
-  const profile = useSelector((state: RootReducer) => state.firebase.profile);
-
   /*
     Handle Firebase Sessions
     no cookie (expired) = sign out
     cookie = update their session
   */
-  if (auth.uid) {
+  if (user) {
     if (!authSessionCookie) dispatch(signOut());
     else dispatch(updateSession());
   }
-
-  if (!isLoaded(auth) || !isLoaded(profile)) return <>Loading...</>;
 
   const convertSecondsToTime = (totalSeconds) => {
     const minutes = Math.floor(totalSeconds / 60);
@@ -111,7 +106,7 @@ const AuthListener = (props) => {
 
   return (
     <>
-      {authSessionCookie && showTimeoutModal && auth && (
+      {authSessionCookie && showTimeoutModal && user && (
         <Modal
           //closable={false}
           open={showTimeoutModal}

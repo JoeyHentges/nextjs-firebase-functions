@@ -1,13 +1,12 @@
 import App from 'next/app';
 import Head from 'next/head';
 import { createGlobalStyle } from 'styled-components';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { SnackbarProvider } from 'notistack';
 import { CookiesProvider } from 'react-cookie';
 
 import * as VARIABLES from '../src/constants/variables';
 import Theme from '../theme';
-import wrapper, { rrfProps } from '../src/redux/store';
+import wrapper from '../src/redux/store';
 import { AuthListener } from '../src/utils';
 
 const GlobalStyles = createGlobalStyle`
@@ -43,20 +42,18 @@ class Init extends App {
 
     return (
       <CookiesProvider>
-        <ReactReduxFirebaseProvider {...rrfProps}>
-          <Theme>
-            <GlobalStyles />
-            <Head>
-              <link rel="shortcut icon" href="/favicon.ico" />
-              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" />
-            </Head>
-            <AuthListener>
-              <SnackbarProvider autoHideDuration={VARIABLES.ALERT_DEFAULT_DURATION}>
-                <Component {...pageProps} />
-              </SnackbarProvider>
-            </AuthListener>
-          </Theme>
-        </ReactReduxFirebaseProvider>
+        <Theme>
+          <GlobalStyles />
+          <Head>
+            <link rel="shortcut icon" href="/favicon.ico" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" />
+          </Head>
+          <AuthListener>
+            <SnackbarProvider autoHideDuration={VARIABLES.ALERT_DEFAULT_DURATION}>
+              <Component {...pageProps} />
+            </SnackbarProvider>
+          </AuthListener>
+        </Theme>
       </CookiesProvider>
     );
   }

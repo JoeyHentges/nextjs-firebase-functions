@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
 function IsUserRedirect(props) {
-  const { auth, loggedInPath, children } = props;
-  const user = !!auth.uid;
+  const { user, loggedInPath, children } = props;
 
   const router = useRouter();
 
@@ -19,7 +18,7 @@ function IsUserRedirect(props) {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.firebase.auth,
+  user: state.user.user,
 });
 
 export default connect(mapStateToProps)(IsUserRedirect);

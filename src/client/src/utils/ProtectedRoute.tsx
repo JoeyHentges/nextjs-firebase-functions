@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
 function ProtectedRoute(props) {
-  const { auth, redirectPath, children } = props;
-  const user = !!auth.uid;
+  const { user, redirectPath, children } = props;
 
   const router = useRouter();
 
@@ -19,7 +18,7 @@ function ProtectedRoute(props) {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.firebase.auth,
+  user: state.user.user,
 });
 
 export default connect(mapStateToProps)(ProtectedRoute);

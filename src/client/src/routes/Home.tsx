@@ -34,9 +34,10 @@ function MyApp() {
   );
 }
 
-const Home = ({ auth, profile }) => {
-  const { email } = auth;
-  const { firstName, lastName } = profile;
+const Home = ({ user }) => {
+  const { email, firstName, lastName } = user;
+  //const { email } = auth;
+  //const { firstName, lastName } = profile;
 
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -88,7 +89,7 @@ const Home = ({ auth, profile }) => {
           </SnackbarProvider>
         </Grid>
         <Grid item>
-          {auth && (
+          {user && (
             <Grid container direction="column" alignItems="center" justifyContent="center">
               <Grid item xs>
                 <Typography variant="body1">
@@ -107,8 +108,7 @@ const Home = ({ auth, profile }) => {
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.firebase.auth,
-  profile: state.firebase.profile,
+  user: state.user.user,
 });
 
 export default connect(mapStateToProps, null)(Home);

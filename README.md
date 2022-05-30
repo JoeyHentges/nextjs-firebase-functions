@@ -43,7 +43,7 @@ You can start editing the app by modifying the files in the `src/client` folder.
 - [x] [`firebase`](https://github.com/firebase/firebase-js-sdk) email / password authentication
 - [x] session management (idle timer)
 - [x] [`notistack`](https://github.com/iamhosseindhv/notistack) alerts
-- [x] [`redux`](https://github.com/reduxjs/redux)
+- [x] [`@reduxjs/toolkit`](https://redux-toolkit.js.org/introduction/getting-started)
 - [x] [`mui core`](https://github.com/mui/material-ui) ui library
 - [x] [`styled-components`](https://github.com/styled-components/styled-components)
 - [x] theme selection (dark / light mode)
