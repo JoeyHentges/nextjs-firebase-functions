@@ -38,11 +38,20 @@ yarn deploy
 
 You can start editing the app by modifying the files in the `src/client` folder.
 
+## Features
+
+- [x] [`firebase`](https://github.com/firebase/firebase-js-sdk) email / password authentication
+- [x] session management (idle timer)
+- [x] [`notistack`](https://github.com/iamhosseindhv/notistack) alerts
+- [x] [`redux`](https://github.com/reduxjs/redux)
+- [x] [`mui core`](https://github.com/mui/material-ui) ui library
+- [x] [`styled-components`](https://github.com/styled-components/styled-components)
+- [x] theme selection (dark / light mode)
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Firebase Documentation](https://firebase.google.com/docs) - learn about Firebase features and API.
+- [MUI Documentation](https://mui.com/material-ui/getting-started/installation/) - learn about MUI features and API.
