@@ -23,8 +23,8 @@ import {
 export const updateSession = () => async (dispatch, getState) => {
   const { uid } = getState().user.user;
   const cookies = new Cookies();
-  cookies.remove('auth/session');
-  cookies.set('auth/session', uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
+  cookies.remove('user/session');
+  cookies.set('user/session', uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
 };
 
 export const signIn = (credentials) => async (dispatch, getState) => {
@@ -41,7 +41,7 @@ export const signIn = (credentials) => async (dispatch, getState) => {
         );
       }
       const profile = profileDoc.data();
-      cookies.set('auth/session', user.user.uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
+      cookies.set('user/session', user.user.uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
       dispatch(
         signInResolved({
           email: user.user.email,
@@ -78,7 +78,7 @@ export const signUp = (newUser) => async (dispatch, getState) => {
       } catch (error) {
         return dispatch(signUpRejected({ error: error.message }));
       }
-      cookies.set('auth/session', user.user.uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
+      cookies.set('user/session', user.user.uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
       dispatch(
         signUpResolved({
           email: user.user.email,
@@ -97,7 +97,7 @@ export const signOut = () => async (dispatch, getState) => {
 
   firebaseSignOut(auth)
     .then(() => {
-      cookies.remove('auth/session');
+      cookies.remove('user/session');
       dispatch(signOutResolved());
     })
     .catch((error) => signOutRejected({ error: error.message }));

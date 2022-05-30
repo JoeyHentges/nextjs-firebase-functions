@@ -36,7 +36,7 @@ const AuthListener = (props) => {
   const [sessionCountdownTimer, setSessionCountdownTimer] = useState(0);
 
   const cookies = new Cookies();
-  const authSessionCookie = cookies.get('auth/session');
+  const authSessionCookie = cookies.get('user/session');
 
   const user = useSelector((state: RootReducer) => state.user.user);
 
