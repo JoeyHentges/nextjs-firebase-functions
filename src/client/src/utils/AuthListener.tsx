@@ -3,28 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import { useIdleTimer } from 'react-idle-timer';
 import styled from 'styled-components';
-import { Modal, Button } from '@mui/material';
+import { Modal, Box, Button, Paper, Typography } from '@mui/material';
 
 import * as VARIABLES from '../constants/variables';
 import { RootReducer, signOut, updateSession } from '../redux';
 import { useScrollBlock } from '../hooks';
 
-const ModalContainer = styled.div`
+const ModalContainer = styled(Paper)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
   text-align: center;
-  padding: 10px;
-`;
-
-const ModalTitle = styled.div`
-  color: ${({ theme }) => theme.palette.grey[500]};
-  font-size: 25px;
-  font-weight: ${({ theme }) => theme.typography.fontWeightBold};
-  padding: 20px 0 20px 0;
-`;
-
-const ModalDescription = styled.div`
-  color: ${({ theme }) => theme.palette.grey[500]};
-  filter: brightness(130%);
-  font-size: 20px;
+  padding: 20px;
 `;
 
 const AuthListener = (props) => {
@@ -110,12 +102,16 @@ const AuthListener = (props) => {
         <Modal
           //closable={false}
           open={showTimeoutModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
           <ModalContainer>
-            <ModalTitle>Your session is about to expire! {convertSecondsToTime(sessionCountdownTimer)}</ModalTitle>
-            <ModalDescription>
+            <Typography variant="h5">
+              Your session is about to expire! {convertSecondsToTime(sessionCountdownTimer)}
+            </Typography>
+            <Typography variant="body1">
               Please refresh your session to remain logged in. Don't worry, we kept everything in place.
-            </ModalDescription>
+            </Typography>
             <div>
               <Button
                 variant="contained"
