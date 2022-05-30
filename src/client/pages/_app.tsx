@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0px;
     overflow-x: hidden;
   }
-  @primary-color: red !important; // primary color for all components
+  
   #__react-alert__ {
     position: relative;
     z-index: 9999 !important;

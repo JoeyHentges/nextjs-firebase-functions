@@ -55,7 +55,7 @@ export const signIn = (credentials) => async (dispatch, getState) => {
     .catch((error) =>
       dispatch(
         signInRejected({
-          error,
+          error: error.message,
         })
       )
     );
@@ -76,7 +76,7 @@ export const signUp = (newUser) => async (dispatch, getState) => {
       try {
         await setDoc(doc(firestore, 'users', user.user.uid), userDetails);
       } catch (error) {
-        return dispatch(signUpRejected({ error }));
+        return dispatch(signUpRejected({ error: error.message }));
       }
       cookies.set('auth/session', user.user.uid, { path: '/', maxAge: VARIABLES.SESSION_DURATION * 60 });
       dispatch(
@@ -89,7 +89,7 @@ export const signUp = (newUser) => async (dispatch, getState) => {
         })
       );
     })
-    .catch((error) => dispatch(signUpRejected({ error })));
+    .catch((error) => dispatch(signUpRejected({ error: error.message })));
 };
 
 export const signOut = () => async (dispatch, getState) => {
@@ -100,10 +100,10 @@ export const signOut = () => async (dispatch, getState) => {
       cookies.remove('auth/session');
       dispatch(signOutResolved());
     })
-    .catch((error) => signOutRejected({ error }));
+    .catch((error) => signOutRejected({ error: error.message }));
 };
 
 export const forgotPassword = (email) => async (dispatch, getState) =>
   sendPasswordResetEmail(auth, email)
     .then(() => dispatch(forgotPasswordResolved()))
-    .catch((error) => dispatch(forgotPasswordRejected({ error })));
+    .catch((error) => dispatch(forgotPasswordRejected({ error: error.message })));

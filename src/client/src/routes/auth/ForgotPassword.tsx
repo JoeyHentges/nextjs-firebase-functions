@@ -36,7 +36,7 @@ const ForgotPassword = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError,
+  authError: state.user.error,
 });
 
 export default connect(mapStateToProps, null)(ForgotPassword);

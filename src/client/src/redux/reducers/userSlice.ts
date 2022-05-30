@@ -18,18 +18,21 @@ export const userSlice = createSlice({
   reducers: {
     signInResolved: (state, action: { payload: UserDetails }) => {
       state.user = action.payload;
+      state.error = null;
     },
     signInRejected: (state, action: { payload: RejectedPayload }) => {
       state.error = action.payload.error;
     },
     signUpResolved: (state, action: { payload: UserDetails }) => {
       state.user = action.payload;
+      state.error = null;
     },
     signUpRejected: (state, action: { payload: RejectedPayload }) => {
       state.error = action.payload.error;
     },
     signOutResolved: (state) => {
       state.user = null;
+      state.error = null;
     },
     signOutRejected: (state, action: { payload: RejectedPayload }) => {
       state.error = action.payload.error;

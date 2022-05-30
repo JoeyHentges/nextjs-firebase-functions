@@ -20,20 +20,17 @@ const SignIn = (props) => {
     <>
       <form onSubmit={handleSubmit} className="white">
         <h5 className="grey-text text-darken-3">Sign In</h5>
-        <p>{authError}</p>
-        <div className="input-field">
+        <div>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" onChange={({ target }) => setEmail(target.value)} />
         </div>
-        <div className="input-field">
+        <div>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" onChange={({ target }) => setPassword(target.value)} />
         </div>
-        <div className="input-field">
-          <button type="submit" className="btn pink lighten-1 z-depth-0">
-            Login
-          </button>
-          <div className="red-text center">{authError || ''}</div>
+        <div>
+          <button type="submit">Login</button>
+          <div style={{ color: 'red' }}>{authError || ''}</div>
         </div>
       </form>
       <a href={ROUTES.FORGOT_PASSWORD}>Forgot Password</a>
@@ -44,7 +41,7 @@ const SignIn = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError,
+  authError: state.user.error,
 });
 
 export default connect(mapStateToProps, null)(SignIn);
